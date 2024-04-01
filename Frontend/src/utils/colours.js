@@ -1,5 +1,14 @@
+// { icon: 'mdi-currency-usd', title: 'Billing & Revenue', value: 'billingRevenue', colour: Colors.BILLINGREVENUE },
+// { icon: 'mdi-account-multiple', title: 'Clients', value: 'clients', colour: Colors.MARKETING },
+// { icon: 'mdi-package-variant-closed', title: 'Stock Control', value: 'distribution', colour: Colors.DISTRIBUTION },
+// { icon: 'mdi-book-open-page-variant', title: 'Accounts', value: 'accounts', colour: Colors.ONBOARDING },
+// { icon: 'mdi-chart-line', title: 'Charts', value: 'charts', colour: Colors.SUPPORT },
+// { icon: 'mdi-file-document', title: 'Reports', value: 'reports', colour: Colors.PRODUCT },
+// { icon: 'mdi-cash-register', title: 'Sales', value: 'sales', colour: Colors.SALES },
+
+
 const Colors = {
-  // PRODUCT: '#985F99',
+  SALES: '#3A435E',
   // PRODUCT: '#B4C5E4',
   // PRODUCT: '#B392AC',
   // PRODUCT: '#5C6672',
@@ -13,7 +22,7 @@ const Colors = {
   BILLINGREVENUE: '#489FB5',
 
   // SALES: '#4CB963',
-  SALES: '#7BC950',
+  // SALES: '#7BC950',
   // SALES: '#CC3F0C',
 
   

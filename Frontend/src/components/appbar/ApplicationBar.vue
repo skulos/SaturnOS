@@ -1,14 +1,14 @@
 <template>
 
-    <v-app-bar>
-        <v-app-bar-nav-icon variant="text" icon="mdi-home" @click="navigateToHome"></v-app-bar-nav-icon>
+    <v-app-bar >
+        <!-- <v-app-bar-nav-icon variant="text" icon="mdi-home" @click="navigateToHome"></v-app-bar-nav-icon> -->
 
         <v-app-bar-title class="tw-pl-10">
             <img class="tw-mx-auto tw-h-16 tw-w-auto" :src="logoImage" alt="Your Company">
         </v-app-bar-title>
 
         <div class="text-center tw-pr-5">
-            <span class="tw-text-s tw-text-gray-500 tw-mr-10 non-selectable">v 0.0.1</span>
+            <!-- <span class="tw-text-s tw-text-gray-500 tw-mr-10 non-selectable">v 0.0.1</span> -->
             <v-menu v-model="menu" :close-on-content-click="false" location="bottom">
 
                 <template v-slot:activator="{ props }">
@@ -42,13 +42,13 @@
 
                     <v-list rounded>
 
-                        <v-list-item @click="navigateToStats" class="rounded-pill">
+                        <!-- <v-list-item @click="navigateToStats" class="rounded-pill">
 
                             <template v-slot:prepend>
                                 <v-icon>mdi-chart-bar</v-icon>
                             </template>
                             <v-list-item-title class="non-selectable">Statistics</v-list-item-title>
-                        </v-list-item>
+                        </v-list-item> -->
 
                         <v-list-item @click="logout" class="rounded-pill">
 
@@ -80,14 +80,14 @@ const logoImage = ref(logo);
 
 const router = useRouter();
 
-const navigateToStats = () => {
-    menu.value = !menu.value
-    router.push('/statistics');
-};
+// const navigateToStats = () => {
+//     menu.value = !menu.value
+//     router.push('/statistics');
+// };
 
-const navigateToHome = () => {
-    router.push('/home');
-};
+// const navigateToHome = () => {
+//     router.push('/home');
+// };
 
 const logout = async () => {
     const userStore = useUserStore();

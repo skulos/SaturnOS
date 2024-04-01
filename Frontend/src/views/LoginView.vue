@@ -2,95 +2,92 @@
     <div class=" justify-center fill-height fill-width pt-10">
 
         <!-- tw-bg-tactivion-blue -->
-        <v-img class="mx-auto" max-width="300"
-            :src="this.logoImage" alt="Company Logo"></v-img>
+        <v-img class="mx-auto" max-width="300" :src="this.logoImage"></v-img>
 
-        <v-card v-if="loginMode" class="mx-auto mt-12 pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
-            <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+        <v-card v-if="loginMode" class="mx-auto mt-12 pa-12 pb-8" elevation="12" max-width="448" rounded="lg">
 
-            <v-text-field v-model="email" density="compact" placeholder="Email address"
-                prepend-inner-icon="mdi-email-outline" variant="outlined"></v-text-field>
+            <!-- <v-card-text class="text-center">Log in to Malmesbury Petshop's Dashboard</v-card-text> -->
 
-            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+            <div class="text-subtitle-1">Account</div>
+
+            <v-text-field v-model="email" density="compact" placeholder="Email address" prepend-inner-icon="mdi-email"
+                variant="outlined"></v-text-field>
+
+            <div class="text-subtitle-1 d-flex align-center justify-space-between">
                 Password
             </div>
 
             <v-text-field v-model="password" :append-inner-icon="passwordVisible ? 'mdi-eye-off' : 'mdi-eye'"
                 :type="passwordVisible ? 'text' : 'password'" density="compact" placeholder="Enter your password"
-                prepend-inner-icon="mdi-lock-outline" variant="outlined"
+                prepend-inner-icon="mdi-lock" variant="outlined" class=""
                 @click:append-inner="passwordVisible = !passwordVisible"></v-text-field>
 
-            <v-btn block class="mb-8" color="black" size="large" variant="tonal" @click="login">
-                Log In
+            <v-btn block class="tw-mb-8 tw-mt-4 text-none" style="background-color: #1f2937; color: white;" size="large"
+                @click="login">
+                Log in
             </v-btn>
 
             <v-card-text class="text-center">
-                <!-- <a class="text-blue text-decoration-none" @click="toggleMode" href="#" rel="noopener noreferrer" target="_blank"> -->
-                <a class="text-black text-decoration-none" @click="toggleMode">
+                <a class="tw-text-black hover:tw-underline" @click="toggleMode">
                     Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
                 </a>
             </v-card-text>
         </v-card>
-        <v-card v-else class="mx-auto mt-12 pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
+        <v-card v-else class="mx-auto mt-12 pa-12 pb-8" elevation="12" max-width="448" rounded="lg">
 
-            <div class="text-subtitle-1 text-medium-emphasis">Email address</div>
+            <div class="text-subtitle-1">Email address</div>
             <v-text-field v-model="email" density="compact" placeholder="Enter Email address"
                 prepend-inner-icon="mdi-email-outline" variant="outlined"></v-text-field>
 
-            <div class="text-subtitle-1 text-medium-emphasis">Name</div>
+            <div class="text-subtitle-1">Name</div>
             <v-text-field v-model="name" density="compact" placeholder="Enter Name" prepend-inner-icon="mdi-format-text"
                 variant="outlined"></v-text-field>
 
-            <div class="text-subtitle-1 text-medium-emphasis">Surname</div>
+            <div class="text-subtitle-1">Surname</div>
             <v-text-field v-model="surname" density="compact" placeholder="Enter Surname"
                 prepend-inner-icon="mdi-format-text" variant="outlined"></v-text-field>
 
-            <div class="text-subtitle-1 text-medium-emphasis">Password</div>
+            <div class="text-subtitle-1">Password</div>
             <v-text-field v-model="password" placeholder="Enter Password"
                 :append-inner-icon="passwordVisible ? 'mdi-eye-off' : 'mdi-eye'"
                 :type="passwordVisible ? 'text' : 'password'" density="compact" prepend-inner-icon="mdi-lock-outline"
                 variant="outlined" @click:append-inner="passwordVisible = !passwordVisible"></v-text-field>
 
-            <div class="text-subtitle-1 text-medium-emphasis">Confirm Password</div>
+            <div class="text-subtitle-1">Confirm Password</div>
             <v-text-field :type="'password'" v-model="confirmPassword" @keyup.enter="test" placeholder="Enter Password"
                 density="compact" prepend-inner-icon="mdi-lock-outline" variant="outlined"></v-text-field>
 
-            <v-btn block class="mb-8" color="black" size="large" variant="tonal" @click="signup">
+            <v-btn block class="tw-mb-8 tw-mt-4" style="background-color: #1f2937; color: white;" size="large"
+                @click="signup">
                 Signup
             </v-btn>
 
             <v-card-text class="text-center">
-                <a class="text-black text-decoration-none" @click="toggleMode">
+                <a class="tw-text-black hover:tw-underline" @click="toggleMode">
                     Login now <v-icon icon="mdi-chevron-right"></v-icon>
                 </a>
             </v-card-text>
         </v-card>
+
+        <div class="text-center tw-mt-20">
+            Made with <span class="tw-text-red">❤️</span> by Hendré Hayman
+        </div>
     </div>
 
     <div class="text-center pa-4">
- 
-    <v-dialog
-      v-model="dialog"
-      width="auto"
-    >
-      <v-card
-        max-width="600"
-        title="⛔ Authentication Service is down ⛔"
-        text="The application is unable to authenticate you - please contact Hendré or try again later. 😥"
-      >
-        <template v-slot:actions>
-          <v-btn
-            class="ms-auto"
-            text="Ok"
-            @click="dialog = false"
-          ></v-btn>
-        </template>
-      </v-card>
-    </v-dialog>
-  </div>
-</template> 
 
-  
+        <v-dialog v-model="dialog" width="auto">
+            <v-card max-width="600" title="⛔ Authentication Service is down ⛔"
+                text="The application is unable to authenticate you - please contact Hendré or try again later. 😥">
+                <template v-slot:actions>
+                    <v-btn class="ms-auto" text="Ok" @click="dialog = false"></v-btn>
+                </template>
+            </v-card>
+        </v-dialog>
+    </div>
+</template>
+
+
 <script>
 import { useUserStore } from '@/stores/userStore';
 import { useRouter } from 'vue-router';
@@ -106,9 +103,6 @@ async function sleep(ms) {
 // TODO fail if Pocketbase isnt online or display message
 export default {
     setup() {
-        // localStorage.clear();
-        // Check if the user is already authenticated
-        // this.checkAuthentication();
         const userStore = useUserStore();
         const router = useRouter();
 
@@ -139,8 +133,6 @@ export default {
         checkAuthentication() {
             const isAuthenticated = useUserStore().checkAuthentication();
             if (isAuthenticated) {
-                // Reset authentication status and navigate to the homepage
-                // useUserStore().setAuthentication(false);
                 this.navigateToHome();
             }
         },
@@ -174,17 +166,16 @@ export default {
 
                 try {
                     const authRecord = await pb.collection('users').authWithPassword(
-                    this.email,
-                    // this.password,
-                    passwordHash,
-                );
+                        this.email,
+                        passwordHash,
+                    );
 
-                const userData = { id: authRecord.record.id, name: authRecord.record.name, username: authRecord.record.username, isAuthenticated: true };
+                    const userData = { id: authRecord.record.id, name: authRecord.record.name, username: authRecord.record.username, isAuthenticated: true };
 
-                useUserStore().setUserData(userData);
+                    useUserStore().setUserData(userData);
 
-                this.clearData();
-                this.$router.push('/home');
+                    this.clearData();
+                    this.$router.push('/home');
                 } catch (error) {
                     this.dialog = true;
                     this.clearData();
@@ -211,7 +202,6 @@ export default {
                     "password": passwordHash,
                     "passwordConfirm": passwordHash,
                     "name": this.username,
-                    // "verified": true,
                 };
 
                 const record = await pb.collection('users').create(data);
@@ -219,7 +209,6 @@ export default {
                 await sleep(1500);
                 await pb.collection('users').authWithPassword(
                     this.email,
-                    // this.password,
                     passwordHash
                 );
 
@@ -239,4 +228,3 @@ export default {
     },
 };
 </script>
-  

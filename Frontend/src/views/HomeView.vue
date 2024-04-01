@@ -1,6 +1,6 @@
 <template>
     <v-container fluid class="fill-height tw-bg-gray-200">
-        <h1>Home Page</h1>
+        <h1>Dashboard Page</h1>
     </v-container>
     
 </template>
@@ -16,7 +16,6 @@
 }
 
 .minidenticon-svg {
-    /* border-radius: 100%; */
     height: 60px;
     width: 60px;
     margin-right: 10px;
@@ -24,8 +23,7 @@
 </style>
   
 <script>
-
-// import Appbar from '@/components/ApplicationBar.vue';
+import dashboard from '@/assets/dashboard.png';
 
 // TODO https://router.vuejs.org/guide/advanced/meta.html
 // TODO https://router.vuejs.org/guide/essentials/nested-routes.html
@@ -33,21 +31,13 @@
 export default {
     data: () => ({
         tab: null,
+        logoImage: dashboard,
     }),
+//     mounted() {
+//     // Reference the image
+//     const image = document.getElementById('image');
+//     // Apply CSS filter to invert colors
+//     image.style.filter = 'invert(100%)';
+//   }
 }
 </script>
-
-<!-- .non-selectable {
-    -webkit-user-select: none;
-    /* Safari, Chrome, Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer, Edge */
-    -o-user-select: none;
-    /* Opera */
-    user-select: none;
-    /* Standard syntax */
-} -->

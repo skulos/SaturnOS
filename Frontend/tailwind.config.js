@@ -14,6 +14,7 @@ export default {
         // 'scissors-yellow': '#FFF017',
         // Aureolin
         // 'onboarding': '#6184D8'
+        'Cobalt': '#1f2937',
       },
       },
   },
