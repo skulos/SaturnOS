@@ -84,12 +84,22 @@ import { useStockItemsStore } from '@/stores/stockStore.js';
 
 export default {
   data: () => ({
+    // headers: [
+    //   { title: 'Code', key: 'code', align: 'start' },
+    //   { title: 'Name', key: 'name', align: 'start' },
+    //   { title: 'Cost', key: 'cost' },
+    //   { title: 'Price', key: 'price' },
+    //   { title: 'Sold', key: 'sold' }
+    // ],
     headers: [
       { title: 'Code', key: 'code', align: 'start' },
       { title: 'Name', key: 'name', align: 'start' },
+      { title: 'QTY', key: 'qty' },
       { title: 'Cost', key: 'cost' },
       { title: 'Price', key: 'price' },
-      { title: 'Sold', key: 'sold' }
+      { title: 'Bill ID', key: 'bill' },
+      { title: 'Remaining', key: 'remaining' },
+      { title: 'Sold Out', key: 'sold_out' }
     ],
     stockStore: useStockItemsStore(),
     search: '',
@@ -98,7 +108,10 @@ export default {
     id: '',
     code: '',
     name: '',
+    bill: '',
+    qty: 0.00,
     cost: 0.00,
+    remaining: 0.00,
     price: 0.00,
     editedStockItem: false,
   }),

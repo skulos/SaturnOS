@@ -22,8 +22,8 @@ export const useStockItemsStore = defineStore({
       this.stockItems = [];
       this.readStockItems();
     },
-    async updateStockItem(id, code, name, cost, price, sold) {
-      const product = new StockItem(code, name, cost, price, sold)
+    async updateStockItem(id, code, name, qty, cost, price, bill, remaining, sold_out) {
+      const product = new StockItem(code, name, qty, cost, price, bill, remaining, sold_out)
       await pb.collection('stock_items').update(id, product.toJSON())
       this.resets();
     }, 
@@ -31,10 +31,11 @@ export const useStockItemsStore = defineStore({
       await pb.collection('stock_items').delete(id);
       this.resets();
     },
-    async createStockItemFromData(code, name, cost, price, sold) {
-      const product = new StockItem(code, name, cost, price, sold)
-      await this.pb.collection('stock_items').create(product.toJSON())
-      await this.readStockItems()
+    async createStockItemFromData(code, name, qty, cost, price, bill, remaining, sold_out) {
+      const product = new StockItem(code, name, qty, cost, price, bill, remaining, sold_out)
+      const record = await this.pb.collection('stock_items').create(product.toJSON())
+
+      // await this.readStockItems()
     },
     async createStockItem(stockItem) {
       await this.pb.collection('stock_items').create(stockItem.toJSON())

@@ -33,8 +33,9 @@ export const useBillsStore = defineStore({
     },
     async createBillFromData(supplier, supplier_ref, issue_date, payment_method, payed, products) {
       const bill = new Bill(supplier, supplier_ref, issue_date, payment_method, payed, products)
-      await this.pb.collection('bills').create(bill.toJSON())
+      const record = await this.pb.collection('bills').create(bill.toJSON())
       await this.readBills()
+      return record
     },
     async createBill(bill) {
       await this.pb.collection('bills').create(bill.toJSON())

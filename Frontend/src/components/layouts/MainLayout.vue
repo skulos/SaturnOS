@@ -132,7 +132,8 @@ const router = useRouter();
 const userStore = useUserStore();
 
 const navigateToDepartment = (departmentValue) => {
-    router.push({ path: departmentValue });
+    // router.push({ path: departmentValue });
+    router.push('/' + departmentValue);
 };
 
 const logout = async () => {
@@ -141,8 +142,8 @@ const logout = async () => {
     userStore.$reset();
     localStorage.clear();
 
-    await router.replace({ path: '/login' });
-    await router.push({ path: '/login' });
+    await router.replace('/login' );
+    await router.push('/login');
 };
 
 const navigateToHome = () => {

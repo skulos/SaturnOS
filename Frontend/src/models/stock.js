@@ -1,31 +1,67 @@
 class Stock {
-    constructor(code, name, cost, price, sold) {
-      this.id = ''
-      this.code = code
-      this.name = name
-      this.cost = cost
-      this.price = price
-      this.sold = sold
-    }
-  
-    toJSON() {
-      return {
-        code: this.code,
-        name: this.name,
-        cost: this.cost,
-        price: this.price,
-        sold: this.sold
-      }
-    }
-  
-    static fromJSON(json) {
-      const stock = new Stock(json.code, json.name, json.cost, json.price, json.sold)
-      stock.id = json.id
-      return stock
+  constructor(code, name, qty, cost, price, bill, remaining, sold_out) {
+    this.id = ''
+    this.code = code
+    this.name = name
+    this.qty = qty
+    this.cost = cost
+    this.price = price
+    this.bill = bill
+    this.remaining = remaining
+    this.sold_out = sold_out
+  }
+
+  toJSON() {
+    return {
+      code: this.code,
+      name: this.name,
+      qty: this.qty,
+      cost: this.cost,
+      price: this.price,
+      bill: this.bill,
+      remaining: this.remaining,
+      sold_out: this.sold_out
     }
   }
 
-  export default Stock;
+  static fromJSON(json) {
+    const stock = new Stock(json.code, json.name, json.qty, json.cost, json.price, json.bill, json.remaining, json.sold_out)
+    stock.id = json.id
+    return stock
+  }
+}
+
+export default Stock;
+
+
+// class Stock {
+//     constructor(code, name, cost, price, sold) {
+//       this.id = ''
+//       this.code = code
+//       this.name = name
+//       this.cost = cost
+//       this.price = price
+//       this.sold = sold
+//     }
+  
+//     toJSON() {
+//       return {
+//         code: this.code,
+//         name: this.name,
+//         cost: this.cost,
+//         price: this.price,
+//         sold: this.sold
+//       }
+//     }
+  
+//     static fromJSON(json) {
+//       const stock = new Stock(json.code, json.name, json.cost, json.price, json.sold)
+//       stock.id = json.id
+//       return stock
+//     }
+//   }
+
+//   export default Stock;
 
 
   

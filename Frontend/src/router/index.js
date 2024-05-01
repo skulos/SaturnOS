@@ -52,21 +52,26 @@ const router = createRouter({
         {
           path: 'bills',
           name: 'Bills',
-          component: BillsView,
-          // children: [
-          //   {
-          //     path: 'new',
-          //     name: 'NewBill',
-          //     component: NewBillView
-          //   },
-          //   // Add other bill-related routes if needed
-          // ]
+          // component: BillsView,
+          children: [
+            { path: '', component: BillsView },
+            {
+              path: 'new',
+              name: 'NewBill',
+              component: NewBillView
+            },
+            {
+              path: ':id',
+              name: 'Bill',
+              component: () => import('@/views/pages/BillView.vue')
+            },
+          ]
         },
-        {
-          path: 'bills/new',
-          name: 'NewBill',
-          component: NewBillView
-        },
+        // {
+        //   path: 'bills/new',
+        //   name: 'NewBill',
+        //   component: NewBillView
+        // },
         {
           path: 'payments',
           name: 'Payments',
@@ -112,11 +117,11 @@ const router = createRouter({
           name: 'Sales',
           component: () => import('@/views/pages/SalesView.vue')
         },
-        {
-          path: 'bills/:id',
-          name: 'Bill',
-          component: () => import('@/views/pages/BillView.vue')
-        },
+        // {
+        //   path: 'bills/:id',
+        //   name: 'Bill',
+        //   component: () => import('@/views/pages/BillView.vue')
+        // },
       ]
     }
   ]
