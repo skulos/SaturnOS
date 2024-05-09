@@ -11,6 +11,11 @@
   <!-- Add a stock status here, also I would like a comprehensive list. Maybe use tabs here to switch between the summart and full list -->
 
   <v-data-table :headers="headers" :items="data" :search="search">
+
+    <template v-slot:[`item.bill`]="{ item }">
+      <router-link :to="`/bills/${item.bill}`">{{ item.bill.toUpperCase() }}</router-link>
+    </template>
+
     <template v-slot:top>
       <v-toolbar flat>
 

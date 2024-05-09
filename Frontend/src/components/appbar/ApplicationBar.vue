@@ -12,6 +12,9 @@
             <v-menu v-model="menu" :close-on-content-click="false" location="bottom">
 
                 <template v-slot:activator="{ props }">
+                    <v-btn icon color="black">
+                        <v-icon>mdi-information-outline</v-icon>
+                    </v-btn>
                     <v-btn icon color="black" v-bind="props">
                         <v-icon>mdi-account</v-icon>
                     </v-btn>

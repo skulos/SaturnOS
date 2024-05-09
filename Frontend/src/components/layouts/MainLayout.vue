@@ -19,12 +19,12 @@
             <v-list>
 
                 <!-- Department: Accounts -->
-                <v-list-item :key="'accounts'" prepend-icon="mdi-book-open-page-variant" title="Accounts"
+                <v-list-item disabled :key="'accounts'" prepend-icon="mdi-book-open-page-variant" title="Accounts"
                     value="accounts" class="rounded-pill non-selectable" @click="navigateToDepartment('accounts')">
                 </v-list-item>
 
                 <!-- Department: Bank -->
-                <v-list-item :key="'bank'" prepend-icon="mdi-bank" title="Bank" value="bank"
+                <v-list-item disabled :key="'bank'" prepend-icon="mdi-bank" title="Bank" value="bank"
                     class="rounded-pill non-selectable" @click="navigateToDepartment('bank')">
                 </v-list-item>
 
@@ -41,17 +41,17 @@
                 <v-divider class="tw-mb-4 tw-mt-4"></v-divider>
 
                 <!-- Department: Barcodes -->
-                <v-list-item :key="'barcodes'" prepend-icon="mdi-barcode-scan" title="Barcodes" value="barcodes"
+                <v-list-item disabled :key="'barcodes'" prepend-icon="mdi-barcode-scan" title="Barcodes" value="barcodes"
                     class="rounded-pill non-selectable" @click="navigateToDepartment('barcodes')">
                 </v-list-item>
 
                 <!-- Department: Reports -->
-                <v-list-item :key="'reports'" prepend-icon="mdi-file-document" title="Reports" value="reports"
+                <v-list-item disabled :key="'reports'" prepend-icon="mdi-file-document" title="Reports" value="reports"
                     class="rounded-pill non-selectable" @click="navigateToDepartment('reports')">
                 </v-list-item>
 
                 <!-- Department: Statistics -->
-                <v-list-item :key="'statistics'" prepend-icon="mdi-chart-line" title="Statistics" value="statistics"
+                <v-list-item disabled :key="'statistics'" prepend-icon="mdi-chart-line" title="Statistics" value="statistics"
                     class="rounded-pill non-selectable" @click="navigateToDepartment('statistics')">
                 </v-list-item>
 
@@ -81,7 +81,7 @@
                 </v-list-item>
 
                 <!-- Department: Sales -->
-                <v-list-item :key="'sales'" prepend-icon="mdi-cash-register" title="Sales" value="sales"
+                <v-list-item disabled :key="'sales'" prepend-icon="mdi-cash-register" title="Sales" value="sales"
                     class="rounded-pill non-selectable" @click="navigateToDepartment('sales')">
                 </v-list-item>
 

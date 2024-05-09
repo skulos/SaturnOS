@@ -34,7 +34,7 @@ export const useStockItemsStore = defineStore({
     async createStockItemFromData(code, name, qty, cost, price, bill, remaining, sold_out) {
       const product = new StockItem(code, name, qty, cost, price, bill, remaining, sold_out)
       const record = await this.pb.collection('stock_items').create(product.toJSON())
-
+      return record
       // await this.readStockItems()
     },
     async createStockItem(stockItem) {

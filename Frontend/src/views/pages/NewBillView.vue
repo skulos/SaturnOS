@@ -421,7 +421,6 @@ export default {
     },
 
     cancel() {
-      // this.$router.push('/bills')
       this.$router.go(-1);
     },
 
@@ -439,40 +438,8 @@ export default {
         productIds
       )
 
-      // Create the stock items
-      // console.log("Bill record id: ", billRecord.id)
-
-      // const data = {
-      //   "code": "test",
-      //   "name": "test",
-      //   "qty": 123,
-      //   "cost": 123,
-      //   "price": 123,
-      //   "biil": "RELATION_RECORD_ID",
-      //   "remaining": 123,
-      //   "sold_out": true
-      // };
-
-      // this.addedProducts.push({
-      //   id: id,
-      //   code: this.selectedProduct,
-      //   name: name,
-      //   qty: parseInt(this.qty),
-      //   cost: parseFloat(this.cost),
-      //   price: parseFloat(this.price),
-      //   total: total
-      // })
-      const stockItems = this.addedProducts.map(async (product) => {
-        // const data = {
-        //   "code": product.code,
-        //   "name": product.name,
-        //   "qty": parseInt(this.qty),
-        //   "cost": parseFloat(product.cost),
-        //   "price": parseFloat(product.price),
-        //   "biil": billRecord.id,
-        //   "remaining": parseInt(this.qty),
-        //   "sold_out": false
-        // };
+      // Create the stock Items
+      this.addedProducts.map(async (product) => {
 
         await this.stockStore.createStockItemFromData(
           product.code,
@@ -485,11 +452,9 @@ export default {
           false
         )
 
-        await this.stockStore.readStockItems()
-
-        // await pb.collection('stock_items').create(data);
       })
 
+      await this.stockStore.readStockItems()
 
       this.close()
       this.cancel()
@@ -512,8 +477,6 @@ export default {
           return product;
         }
       })
-
-      console.log("Added products: ", this.addedProducts)
 
       this.close()
     },
