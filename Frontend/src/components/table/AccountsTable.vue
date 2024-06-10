@@ -1,10 +1,15 @@
 <template>
 
-  <v-card title="Search For Supplier" flat class="tw-mt-4">
+  <v-card title="Search For Accounts" flat class="tw-mt-4">
     <template v-slot:text>
       <v-text-field v-model="search" label="Search" prepend-inner-icon="mdi-magnify" variant="outlined" hide-details
         single-line></v-text-field>
     </template>
+
+    <!-- <template v-slot:text>
+      <SearchInput :type="search" v-model="search" :searchIcon="true" :clearIcon="true" :hideShortcutIconOnBlur="false"
+        :clearOnEsc="false" />
+    </template> -->
   </v-card>
 
   <div class="tw-mb-10"></div>
@@ -13,14 +18,14 @@
     <template v-slot:top>
       <v-toolbar flat class="toolbar-background">
 
-        <v-toolbar-title class="tw-text-white">Supplier List</v-toolbar-title>
+        <v-toolbar-title class="tw-text-white">Accounts List</v-toolbar-title>
         <!-- <v-divider class="mx-4" inset vertical></v-divider> -->
         <v-spacer></v-spacer>
 
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ props }">
             <v-btn color="white" dark v-bind="props">
-              New Supplier
+              New Account
             </v-btn>
           </template>
 
@@ -72,11 +77,27 @@
 
       </v-toolbar>
     </template>
+
+    <template v-slot:[`item.balance_type`]="{ value }">
+      <v-chip variant="flat" :color="balanceColour(value)">
+        {{ value }}
+      </v-chip>
+    </template>
+
+    <template v-slot:[`item.account_type`]="{ value }">
+      <v-chip variant="flat" :color="accountColour(value)">
+        {{ value }}
+      </v-chip>
+    </template>
+
     <template v-slot:item.actions="{ item }">
-      <v-icon class="me-2" size="small" @click="editItem(item)">
+      <!-- <v-icon class="me-2" size="small" @click="editItem(item)">
         mdi-pencil
       </v-icon>
       <v-icon size="small" @click="deleteItem(item)">
+        mdi-delete
+      </v-icon> -->
+      <v-icon class="me-2" size="small" @click="editItem(item)">
         mdi-delete
       </v-icon>
     </template>
@@ -92,34 +113,41 @@
 
 
 <script>
-import { useSuppliersStore } from '@/stores/suppliersStore.js';
+import { useAccountsStore } from '@/stores/accountsStore.js'
+
+import SearchInput from 'vue-search-input'
+// Optionally import default styling
+import 'vue-search-input/dist/styles.css'
 
 export default {
+  components: {
+    SearchInput
+  },
   data: () => ({
     headers: [
       { title: 'Name', key: 'name', align: 'start' },
-      { title: 'Email', key: 'email' },
-      { title: 'Account Type', key: 'accountType' },
+      { title: 'Balance Type', key: 'balance_type', searchable: false },
+      { title: 'Account Type', key: 'account_type', searchable: false },
       { title: 'Active', key: 'active' },
       { title: 'Actions', key: 'actions', sortable: false }
     ],
-    supplierStore: useSuppliersStore(),
+    accountStore: useAccountsStore(),
     search: '',
     dialog: false,
     dialogDelete: false,
-    supplierId: '',
-    supplierName: '',
-    supplierEmail: '',
-    supplierAccountType: '',
-    editedSupplier: false,
+    accountId: '',
+    accountName: '',
+    accountBalanceType: '',
+    accountAccountType: '',
+    editedAccount: false,
   }),
 
   computed: {
     data() {
-      return this.supplierStore.suppliers;
+      return this.accountStore.accounts;
     },
     formTitle() {
-      return this.supplierId === '' ? 'New Supplier' : 'Edit Supplier'
+      return this.accountId === '' ? 'New Account' : 'Edit Account'
     },
   },
 
@@ -133,44 +161,75 @@ export default {
   },
 
   async created() {
-    await this.supplierStore.readSuppliers();
+    await this.accountStore.readAccounts();
   },
 
   methods: {
 
-    editItem(item) {
-      this.supplierId = item.id
-      this.supplierName = item.name
-      this.supplierEmail = item.email
-      this.supplierAccountType = item.account_type
+    balanceColour(val) {
+      // pink and purple
+      if (val === 'debit')
+        return '#90EE90';
+      else
+        return '#ADD8E6';
+    },
 
-      this.editedSupplier = true
+    accountColour(val) {
+      // I green
+      // E red
+      //
+      // E yellow
+      // A blue
+      // L orange
+      switch (val) {
+        case 'expense':
+          return '#ADD8E6'; // Light Blue
+        case 'asset':
+          return '#90EE90'; // Light Green
+        case 'income':
+          return '#FFFFE0'; // Light Yellow
+        case 'equity':
+          return '#F08080'; // Light Coral
+        case 'liability':
+          return '#FFB6C1'; // Light Pink
+        default:
+          return '#E6E6FA'; // Lavender (default color)
+      }
+    },
+
+    editItem(item) {
+      this.accountId = item.id
+      this.accountName = item.name
+      this.accountBalanceType = item.balance_type
+      this.accountAccountType = item.account_type
+
+      this.editedAccount = true
       this.dialog = true
     },
 
     deleteItem(item) {
-      this.supplierId = item.id
-      this.supplierName = item.name
+      this.accountId = item.id
+      this.accountName = item.name
       this.dialogDelete = true
     },
 
     async deleteItemConfirm() {
-      await this.supplierStore.deleteSupplier(this.supplierId);
+      await this.accountStore.deleteAccount(this.accountId);
 
-      this.supplierId = '';
-      this.supplierName = '';
+      this.accountId = '';
+      this.accountName = '';
 
       this.closeDelete()
     },
 
     close() {
-      this.supplierId = '';
-      this.supplierName = '';
-      this.supplierEmail = '';
-      this.supplierAccountType = '';
+      this.accountId = '';
+      this.accountName = '';
+      this.accountBalanceType = '';
+      this.accountAccountType = '';
 
       this.dialog = false
-      this.editedSupplier = false
+      this.editedAccount = false
     },
 
     closeDelete() {
@@ -179,16 +238,16 @@ export default {
 
     async save() {
 
-      if (this.editedSupplier == false) {
-        await this.supplierStore.createSupplierFromData(this.supplierName, this.supplierEmail, this.supplierAccountType);
+      if (this.editedAccount == false) {
+        await this.accountStore.createAccountFromData(this.accountName, this.accountBalanceType, this.accountAccountType);
       } else {
-        await this.supplierStore.updateSupplier(this.supplierId, this.supplierName, this.supplierEmail, this.supplierAccountType);
+        await this.accountStore.updateAccount(this.accountId, this.accountName, this.accountBalanceType, this.accountAccountType);
       }
 
-      this.supplierId = '';
-      this.supplierName = '';
-      this.supplierEmail = '';
-      this.supplierAccountType = '';
+      this.accountId = '';
+      this.accountName = '';
+      this.accountBalanceType = '';
+      this.accountAccountType = '';
 
       this.close()
     },

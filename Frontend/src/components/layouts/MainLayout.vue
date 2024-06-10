@@ -5,7 +5,7 @@
             style="background-color: #1f2937; color: white;">
 
             <v-list-item :prepend-avatar="dashboard" title="Dashboard" value="dashboard" @click="navigateToHome"
-                class="tw-text-white tw-mt-6 tw-mb-4 rounded-pill">
+                class="tw-text-white tw-mt-2 tw-mb-2 rounded-pill"> <!-- tw-mt-6 tw-mb-4 -->
             </v-list-item>
 
             <v-divider></v-divider>
@@ -18,9 +18,14 @@
 
             <v-list>
 
+                <!-- Department: Ledger -->
+                <v-list-item :key="'ledger'" prepend-icon="mdi-book-open-page-variant" title="Ledger" value="ledger"
+                    class="rounded-pill non-selectable" @click="navigateToDepartment('ledger')">
+                </v-list-item>
+
                 <!-- Department: Accounts -->
-                <v-list-item disabled :key="'accounts'" prepend-icon="mdi-book-open-page-variant" title="Accounts"
-                    value="accounts" class="rounded-pill non-selectable" @click="navigateToDepartment('accounts')">
+                <v-list-item :key="'accounts'" prepend-icon="mdi-scale-balance" title="Accounts" value="accounts"
+                    class="rounded-pill non-selectable" @click="navigateToDepartment('accounts')">
                 </v-list-item>
 
                 <!-- Department: Bank -->
@@ -28,49 +33,27 @@
                     class="rounded-pill non-selectable" @click="navigateToDepartment('bank')">
                 </v-list-item>
 
+                <v-divider class="list-divider"></v-divider>
+
                 <!-- Department: Bills -->
                 <v-list-item :key="'bills'" prepend-icon="mdi-currency-usd" title="Bills" value="bills"
                     class="rounded-pill non-selectable" @click="navigateToDepartment('bills')">
                 </v-list-item>
 
+                <!-- Department: Expenses -->
+                <v-list-item :key="'expenses'" prepend-icon="mdi-cash" title="Expenses" value="expenses"
+                    class="rounded-pill non-selectable" @click="navigateToDepartment('expenses')">
+                </v-list-item>
+
                 <!-- Department: Payments -->
-                <v-list-item :key="'bills'" prepend-icon="mdi-cash" title="Payments" value="payments"
+                <v-list-item :key="'payments'" prepend-icon="mdi-credit-card-outline" title="Payments" value="payments"
                     class="rounded-pill non-selectable" @click="navigateToDepartment('payments')">
                 </v-list-item>
 
-                <v-divider class="tw-mb-4 tw-mt-4"></v-divider>
-
-                <!-- Department: Barcodes -->
-                <v-list-item disabled :key="'barcodes'" prepend-icon="mdi-barcode-scan" title="Barcodes" value="barcodes"
-                    class="rounded-pill non-selectable" @click="navigateToDepartment('barcodes')">
-                </v-list-item>
-
-                <!-- Department: Reports -->
-                <v-list-item disabled :key="'reports'" prepend-icon="mdi-file-document" title="Reports" value="reports"
-                    class="rounded-pill non-selectable" @click="navigateToDepartment('reports')">
-                </v-list-item>
-
-                <!-- Department: Statistics -->
-                <v-list-item disabled :key="'statistics'" prepend-icon="mdi-chart-line" title="Statistics" value="statistics"
-                    class="rounded-pill non-selectable" @click="navigateToDepartment('statistics')">
-                </v-list-item>
-
-                <v-divider class="tw-mb-4 tw-mt-4"></v-divider>
-
-                <!-- Department: Customers -->
-                <v-list-item :key="'customers'" prepend-icon="mdi-account-multiple" title="Customers" value="customers"
-                    class="rounded-pill non-selectable" @click="navigateToDepartment('customers')">
-                </v-list-item>
-
-                <!-- Department: Suppliers -->
-                <v-list-item :key="'suppliers'" prepend-icon="mdi-account-box-outline" title="Suppliers"
-                    value="suppliers" class="rounded-pill non-selectable" @click="navigateToDepartment('suppliers')">
-                </v-list-item>
-
-                <v-divider class="tw-mb-4 tw-mt-4"></v-divider>
+                <v-divider class="list-divider"></v-divider>
 
                 <!-- Department: Products -->
-                <v-list-item :key="'product'" prepend-icon="mdi-shopping" title="Products" value="product"
+                <v-list-item :key="'product'" prepend-icon="mdi-shopping-outline" title="Products" value="product"
                     class="rounded-pill non-selectable" @click="navigateToDepartment('product')">
                 </v-list-item>
 
@@ -85,15 +68,39 @@
                     class="rounded-pill non-selectable" @click="navigateToDepartment('sales')">
                 </v-list-item>
 
+                <v-divider class="list-divider"></v-divider>
+
+                <!-- Department: Customers -->
+                <v-list-item :key="'customers'" prepend-icon="mdi-account-multiple" title="Customers" value="customers"
+                    class="rounded-pill non-selectable" @click="navigateToDepartment('customers')">
+                </v-list-item>
+
+                <!-- Department: Suppliers -->
+                <v-list-item :key="'suppliers'" prepend-icon="mdi-account-box-outline" title="Suppliers"
+                    value="suppliers" class="rounded-pill non-selectable" @click="navigateToDepartment('suppliers')">
+                </v-list-item>
+
+                <v-divider class="list-divider"></v-divider>
+
+                <!-- Department: Barcodes -->
+                <v-list-item disabled :key="'barcodes'" prepend-icon="mdi-barcode-scan" title="Barcodes"
+                    value="barcodes" class="rounded-pill non-selectable" @click="navigateToDepartment('barcodes')">
+                </v-list-item>
+
+                <!-- Department: Reports -->
+                <v-list-item disabled :key="'reports'" prepend-icon="mdi-file-document" title="Reports" value="reports"
+                    class="rounded-pill non-selectable" @click="navigateToDepartment('reports')">
+                </v-list-item>
+
+                <!-- Department: Statistics -->
+                <v-list-item disabled :key="'statistics'" prepend-icon="mdi-chart-line" title="Statistics"
+                    value="statistics" class="rounded-pill non-selectable" @click="navigateToDepartment('statistics')">
+                </v-list-item>
+
             </v-list>
 
             <template v-slot:append>
                 <div class="pa-2 ">
-
-                    <div class="text-center tw-mb-4">
-                        <span class="tw-text-s  tw-text-gray-500 tw-mr-10 non-selectable">v 0.0.1</span>
-                    </div>
-
                     <v-divider></v-divider>
                     <v-list>
                         <v-list-item prepend-icon="mdi-logout" title="Logout" value="logout" class="rounded-pill"
@@ -119,6 +126,11 @@
     max-height: calc(100vh - 64px);
     overflow-y: auto;
 }
+
+.list-divider {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 </style>
 
 <script setup>
@@ -142,7 +154,7 @@ const logout = async () => {
     userStore.$reset();
     localStorage.clear();
 
-    await router.replace('/login' );
+    await router.replace('/login');
     await router.push('/login');
 };
 

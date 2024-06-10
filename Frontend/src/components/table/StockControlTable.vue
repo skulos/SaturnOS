@@ -17,15 +17,15 @@
     </template>
 
     <template v-slot:top>
-      <v-toolbar flat>
+      <v-toolbar flat class="toolbar-background">
 
-        <v-toolbar-title>Stock List</v-toolbar-title>
-        <v-divider class="mx-4" inset vertical></v-divider>
+        <v-toolbar-title class="tw-text-white">Stock List</v-toolbar-title>
+        <!-- <v-divider class="mx-4" inset vertical></v-divider> -->
         <v-spacer></v-spacer>
 
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ props }">
-            <v-btn color="black" dark v-bind="props">
+            <v-btn color="white" dark v-bind="props">
               Stock take
             </v-btn>
           </template>
@@ -57,7 +57,7 @@
           </v-card>
         </v-dialog>
 
-        <v-dialog v-model="dialogDelete" class="tw-text-center" max-width="650px" >
+        <v-dialog v-model="dialogDelete" class="tw-text-center" max-width="650px">
           <v-card>
             <v-card-title class="text-h5">Are you sure you want to delete {{ supplierName }}?</v-card-title>
             <v-card-actions>
@@ -83,6 +83,11 @@
 
 </template>
 
+<style scoped>
+.toolbar-background {
+  background-color: #1f2937;
+}
+</style>
 
 <script>
 import { useStockItemsStore } from '@/stores/stockStore.js';
@@ -172,7 +177,7 @@ export default {
     // close() {
     //   this.customerId = '';
     //   this.customerName = '';
-      
+
     //   this.dialog = false
     //   this.editedCustomer = false
     // },

@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import DataTable from '@/components/table/AccountsTable.vue'
+import DataTable from '@/components/table/ExpensesTable.vue';
 </script>

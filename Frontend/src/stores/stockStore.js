@@ -1,35 +1,35 @@
 import { defineStore } from 'pinia'
 import pb from '@/pocketbase/pocketbase'
-import StockItem  from '@/models/stock'
+import StockItem from '@/models/stock'
 
 export const useStockItemsStore = defineStore({
-  id: 'stockItems',
+  id: 'expenses',
   state: () => ({
     pb: pb,
     stockItems: []
   }),
   actions: {
     subscribe() {
-        pb.collection('stock_items').subscribe(
-            '*',
-            (event) => {
-                this.stockItems.push(StockItem.fromJSON(event.record))
-            },
-            {}
-        )
+      pb.collection('stock_items').subscribe(
+        '*',
+        (event) => {
+          this.stockItems.push(StockItem.fromJSON(event.record))
+        },
+        {}
+      )
     },
     async resets() {
-      this.stockItems = [];
-      this.readStockItems();
+      this.stockItems = []
+      this.readStockItems()
     },
     async updateStockItem(id, code, name, qty, cost, price, bill, remaining, sold_out) {
       const product = new StockItem(code, name, qty, cost, price, bill, remaining, sold_out)
       await pb.collection('stock_items').update(id, product.toJSON())
-      this.resets();
-    }, 
+      this.resets()
+    },
     async deleteStockItem(id) {
-      await pb.collection('stock_items').delete(id);
-      this.resets();
+      await pb.collection('stock_items').delete(id)
+      this.resets()
     },
     async createStockItemFromData(code, name, qty, cost, price, bill, remaining, sold_out) {
       const product = new StockItem(code, name, qty, cost, price, bill, remaining, sold_out)
@@ -46,4 +46,4 @@ export const useStockItemsStore = defineStore({
       this.stockItems = record.map((record) => StockItem.fromJSON(record))
     }
   }
-});
+})

@@ -2,9 +2,12 @@
     <v-container fluid class="fill-height tw-bg-gray-200">
         <h1>Dashboard Page</h1>
     </v-container>
-    
+
+
+    <DownloadComponent />
+
 </template>
-  
+
 <style scoped>
 .outlined-btn {
     border: 1px solid black !important;
@@ -21,8 +24,10 @@
     margin-right: 10px;
 }
 </style>
-  
+
 <script>
+import DownloadComponent from '@/components/download/DownloadComponent.vue';
+
 import dashboard from '@/assets/dashboard.png';
 
 // TODO https://router.vuejs.org/guide/advanced/meta.html
@@ -33,11 +38,14 @@ export default {
         tab: null,
         logoImage: dashboard,
     }),
-//     mounted() {
-//     // Reference the image
-//     const image = document.getElementById('image');
-//     // Apply CSS filter to invert colors
-//     image.style.filter = 'invert(100%)';
-//   }
+    components: {
+        DownloadComponent,
+    },
+    //     mounted() {
+    //     // Reference the image
+    //     const image = document.getElementById('image');
+    //     // Apply CSS filter to invert colors
+    //     image.style.filter = 'invert(100%)';
+    //   }
 }
 </script>

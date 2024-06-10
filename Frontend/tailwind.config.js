@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   prefix: 'tw-',
-  content: [
-    "./index.html",
-    "./src/**/*.{vue, js, ts, jsx, tsx}"
-  ],
+  content: ['./index.html', './src/**/*.{vue, js, ts, jsx, tsx}'],
   theme: {
     extend: {
       colors: {
@@ -14,10 +11,9 @@ export default {
         // 'scissors-yellow': '#FFF017',
         // Aureolin
         // 'onboarding': '#6184D8'
-        'Cobalt': '#1f2937',
-      },
-      },
+        Cobalt: '#1f2937'
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 }
-

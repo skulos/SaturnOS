@@ -127,3 +127,5 @@ See also the list of [contributors](https://github.com/kylelobo/The-Documentatio
 - [ ] vat inclusive and exclusicve entries
 - [ ] adjustment for bills if bill and calculation is out
 - [ ] inside bills add an option to give the total cost vat inclusive and qty, and calculate the individual cost
+- [ ] https://colorkit.co/color/1f2937/
+- [ ] 

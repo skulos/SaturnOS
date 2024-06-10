@@ -4,12 +4,12 @@ import LoginView from '@/views/LoginView.vue'
 import HomeView from '@/views/HomeView.vue'
 import NewBillView from '../views/pages/NewBillView.vue'
 import BillsView from '@/views/pages/BillsView.vue'
-import LoginLayout from '@/components/layouts/LoginLayout.vue';
-import MainLayout from '@/components/layouts/MainLayout.vue';
-import { useUserStore } from '@/stores/userStore';
+import LoginLayout from '@/components/layouts/LoginLayout.vue'
+import MainLayout from '@/components/layouts/MainLayout.vue'
+import { useUserStore } from '@/stores/userStore'
 
 // Create a new router history instance
-const routerHistory = createWebHistory(import.meta.env.BASE_URL);
+const routerHistory = createWebHistory(import.meta.env.BASE_URL)
 
 const router = createRouter({
   history: routerHistory,
@@ -40,6 +40,11 @@ const router = createRouter({
           component: () => import('@/views/pages/StatisticsView.vue')
         },
         {
+          path: 'ledger',
+          name: 'Ledger',
+          component: () => import('@/views/pages/LedgerView.vue')
+        },
+        {
           path: 'accounts',
           name: 'Accounts',
           component: () => import('@/views/pages/AccountsView.vue')
@@ -64,14 +69,14 @@ const router = createRouter({
               path: ':id',
               name: 'Bill',
               component: () => import('@/views/pages/BillView.vue')
-            },
+            }
           ]
         },
-        // {
-        //   path: 'bills/new',
-        //   name: 'NewBill',
-        //   component: NewBillView
-        // },
+        {
+          path: 'expenses',
+          name: 'Expenses',
+          component: () => import('@/views/pages/ExpensesView.vue')
+        },
         {
           path: 'payments',
           name: 'Payments',
@@ -116,7 +121,7 @@ const router = createRouter({
           path: 'sales',
           name: 'Sales',
           component: () => import('@/views/pages/SalesView.vue')
-        },
+        }
         // {
         //   path: 'bills/:id',
         //   name: 'Bill',
@@ -126,7 +131,6 @@ const router = createRouter({
     }
   ]
 })
-
 
 // Navigation guard to check if the user is authenticated before accessing routes
 // router.beforeEach((to, from, next) => {
@@ -139,13 +143,12 @@ const router = createRouter({
 //   }
 // });
 
-router.beforeEach(async (to, ) => {
-
-  const userStore = useUserStore();
-  const isAuthenticated = userStore.isAuthenticated;
+router.beforeEach(async (to) => {
+  const userStore = useUserStore()
+  const isAuthenticated = userStore.isAuthenticated
   if (!isAuthenticated && to.name !== 'Login') {
     return { name: 'Login' }
   }
-});
+})
 
 export default router

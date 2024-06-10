@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="9">
-      <v-card variant="outlined">
+      <v-card variant="outlined" elevation="8">
         <v-card-title>
           <!-- <span class="text-h5">New Bill</span> -->
           <span class="text-h5">Supplier Details</span>
@@ -67,7 +67,7 @@
 
     <v-col cols="3">
       <!-- <v-card class="tw-border tw-border-black tw-border-solid tw-rounded-lg tw-shadow-md"> -->
-      <v-card variant="outlined">
+      <v-card variant="outlined" elevation="12">
         <v-card-title>
           <span class="text-h5">Bill Totals</span>
           <v-divider class="tw-mt-2"></v-divider>
@@ -435,7 +435,8 @@ export default {
         this.issueDateString,
         this.paymentMethod.toLowerCase(),
         false,
-        productIds
+        productIds,
+        this.total
       )
 
       // Create the stock Items

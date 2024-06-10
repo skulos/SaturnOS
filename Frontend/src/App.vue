@@ -1,7 +1,6 @@
-
 <template>
   <v-app>
-  <v-main>
+    <v-main>
       <RouterView />
     </v-main>
   </v-app>
@@ -9,18 +8,22 @@
 
 <style>
 .non-selectable {
-    -webkit-user-select: none;
-    /* Safari, Chrome, Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer, Edge */
-    -o-user-select: none;
-    /* Opera */
-    user-select: none;
-    /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari, Chrome, Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer, Edge */
+  -o-user-select: none;
+  /* Opera */
+  user-select: none;
+  /* Standard syntax */
+}
+
+.toolbar-background {
+  background-color: #1f2937;
 }
 </style>
 

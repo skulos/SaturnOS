@@ -15,20 +15,21 @@
       <router-link :to="`/bills/${item.id}`">{{ item.id.toUpperCase() }}</router-link>
     </template>
 
+    <!-- TODO: add chips for payment types too -->
     <template v-slot:[`item.payed`]="{ value }">
-      <v-chip variant="flat" :color="paymentColour(value)">
+      <v-chip variant="flat" :color="paymentColour(value)" class="payment-status-chip">
         {{ paymentStatus(value) }}
       </v-chip>
     </template>
 
     <template v-slot:top>
-      <v-toolbar flat>
+      <v-toolbar flat class="toolbar-background">
 
-        <v-toolbar-title>Bill List</v-toolbar-title>
-        <v-divider class="mx-4" inset vertical></v-divider>
+        <v-toolbar-title class="tw-text-white">Bill List</v-toolbar-title>
+        <!-- <v-divider class="mx-4 bg-divider-transparent" inset vertical hidden></v-divider> -->
         <v-spacer></v-spacer>
 
-        <v-btn color="black" dark @click="navigate">
+        <v-btn color="white" dark @click="navigate">
           New Bill
         </v-btn>
 
@@ -66,6 +67,18 @@
 .input-wrapper input {
   width: 100%;
   box-sizing: border-box;
+}
+
+.toolbar-background {
+  background-color: #1f2937;
+}
+
+.bg-divider-transparent {
+  background-color: transparent;
+}
+
+.payment-status-chip {
+  color: black !important;
 }
 </style>
 

@@ -8,31 +8,56 @@ export const useBillsStore = defineStore({
     pb: pb,
     bills: []
   }),
+  getters: {
+    getUnpaidBillCount: (state) => {
+      return state.bills.filter((bill) => bill.payed === false).length
+    },
+    getUnpaidBillAmount: (state) => {
+      const unpaidBills = state.bills.filter((bill) => bill.payed === false)
+      return unpaidBills.reduce((total, bill) => total + bill.total, 0)
+    }
+  },
   actions: {
     subscribe() {
-        pb.collection('bills').subscribe(
-            '*',
-            (event) => {
-                this.bills.push(Bill.fromJSON(event.record))
-            },
-            {}
-        )
+      pb.collection('bills').subscribe(
+        '*',
+        (event) => {
+          this.bills.push(Bill.fromJSON(event.record))
+        },
+        {}
+      )
     },
     async resets() {
-      this.bills = [];
-      this.readBills();
+      this.bills = []
+      this.readBills()
     },
     async updateBill(id, supplier, supplier_ref, issue_date, payment_method, payed, products) {
       const bill = new Bill(supplier, supplier_ref, issue_date, payment_method, payed, products)
       await pb.collection('bills').update(id, bill.toJSON())
-      this.resets();
-    }, 
-    async deleteBill(id) {
-      await pb.collection('bills').delete(id);
-      this.resets();
+      this.resets()
     },
-    async createBillFromData(supplier, supplier_ref, issue_date, payment_method, payed, products) {
-      const bill = new Bill(supplier, supplier_ref, issue_date, payment_method, payed, products)
+    async deleteBill(id) {
+      await pb.collection('bills').delete(id)
+      this.resets()
+    },
+    async createBillFromData(
+      supplier,
+      supplier_ref,
+      issue_date,
+      payment_method,
+      payed,
+      products,
+      total
+    ) {
+      const bill = new Bill(
+        supplier,
+        supplier_ref,
+        issue_date,
+        payment_method,
+        payed,
+        products,
+        total
+      )
       const record = await this.pb.collection('bills').create(bill.toJSON())
       await this.readBills()
       return record
@@ -43,15 +68,11 @@ export const useBillsStore = defineStore({
     },
     async readBills() {
       // const record = await this.pb.collection('bills').getFullList()
-      const record = await this.pb.collection('bills').getFullList({ expand: 'supplier,products'})
+      const record = await this.pb.collection('bills').getFullList({ expand: 'supplier,products' })
       this.bills = record.map((record) => Bill.fromJSON(record))
     }
-    // async getInformation(bill) {
-
-    // }
   }
-});
-
+})
 
 // [
 //   {
